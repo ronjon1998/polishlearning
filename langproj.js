@@ -14,6 +14,10 @@ player score +1 if wrong computer score +1
 
 const polishBoxes = document.getElementById('polishBox');
 const englishBoxes = document.getElementsByClassName('options');
+const buttonOne = document.getElementById('buttonOne')
+const buttonTwo = document.getElementById('buttonTwo')
+const buttonThree = document.getElementById('buttonThree')
+const buttonFour = document.getElementById('buttonFour')
 const englishAndPolishWords = {
     beer : "piwo",
     why : "czemu",
@@ -34,6 +38,10 @@ function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
 };
 
+function getValueByKey(object, key) {
+    return object[key];
+};
+
 function generateRandomInteger(max) {
     return Math.floor(Math.random() * max) + 1;
     };
@@ -45,11 +53,47 @@ function randomPolishAndCorrespondingEnglish() {
     for (var i = 0; i < englishBoxes.length; i++) {
         englishBoxes[i].innerHTML = englishWords[generateRandomInteger(9)]}; // generates 4 english words 2/4
     englishBoxes[b].innerHTML = englishWords[a]; //generates atleast one correct answer 3/4
-    let answer = getKeyByValue(englishAndPolishWords, polishWords[a]);
-    let j =0;
-    do {englishBoxes[j].innerHTML = englishWords[generateRandomInteger(9)], j++}
-while (englishBoxes[j].innerHTML !== answer)
 };
+
+// The scoring system
+
+function selectsPlayersAnswerOptionOne() {
+    let userChoice = englishBoxes[0].innerHTML;
+    let userAnswer = getValueByKey(englishAndPolishWords, userChoice);
+    if (polishBoxes.innerHTML === userAnswer) {playerScore++}
+    else {computerScore++}
+
+};function selectsPlayersAnswerOptionTwo() {
+    let userChoice = englishBoxes[1].innerHTML;
+    let userAnswer = getValueByKey(englishAndPolishWords, userChoice);
+    if (polishBoxes.innerHTML === userAnswer) {playerScore++}
+    else {computerScore++}
+};
+
+function selectsPlayersAnswerOptionThree() {
+    let userChoice = englishBoxes[2].innerHTML;
+    let userAnswer = getValueByKey(englishAndPolishWords, userChoice);
+    if (polishBoxes.innerHTML === userAnswer) {playerScore++}
+    else {computerScore++}
+};
+
+function selectsPlayersAnswerOptionFour() {
+    let userChoice = englishBoxes[3].innerHTML;
+    let userAnswer = getValueByKey(englishAndPolishWords, userChoice);
+    if (polishBoxes.innerHTML === userAnswer) {playerScore++}
+    else {computerScore++}
+};
+
+
+
+
+
+/* 
+let answer = getKeyByValue(englishAndPolishWords, polishWords[a]);
+let j =0;
+do {englishBoxes[j].innerHTML = englishWords[generateRandomInteger(9)], j++}
+while (englishBoxes[j].innerHTML !== answer)
+
 
 
 
