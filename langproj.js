@@ -157,57 +157,57 @@ function updatingComputerScore() {
 
 function optionOne() {
     if (polish.innerHTML === "piwo" && englishAll[0].innerHTML === "beer") {playerScore++}
-    if (polish.innerHTML === "czemu" && englishAll[0].innerHTML === "why") {playerScore++}
-    if (polish.innerHTML === "zamiast" && englishAll[0].innerHTML === "instead") {playerScore++}
-    if (polish.innerHTML === "przepraszam" && englishAll[0].innerHTML === "excuse me") {playerScore++}
-    if (polish.innerHTML === "dziekuje" && englishAll[0].innerHTML === "thank you") {playerScore++}
-    if (polish.innerHTML === "dobry" && englishAll[0].innerHTML === "good") {playerScore++}
-    if (polish.innerHTML === "niedobry" && englishAll[0].innerHTML === "bad") {playerScore++}
-    if (polish.innerHTML === "ranek" && englishAll[0].innerHTML === "morning") {playerScore++}
-    if (polish.innerHTML === "popludnie" && englishAll[0].innerHTML === "afternoon") {playerScore++}
-    if (polish.innerHTML === "wieczor" && englishAll[0].innerHTML === "evening") {playerScore++} 
-    else {computerScore++};
+    else if (polish.innerHTML === "czemu" && englishAll[0].innerHTML === "why") {playerScore++}
+    else if (polish.innerHTML === "zamiast" && englishAll[0].innerHTML === "instead") {playerScore++}
+    else if (polish.innerHTML === "przepraszam" && englishAll[0].innerHTML === "excuse me") {playerScore++}
+    else if (polish.innerHTML === "dziekuje" && englishAll[0].innerHTML === "thank you") {playerScore++}
+    else if (polish.innerHTML === "dobry" && englishAll[0].innerHTML === "good") {playerScore++}
+    else if (polish.innerHTML === "niedobry" && englishAll[0].innerHTML === "bad") {playerScore++}
+    else if (polish.innerHTML === "ranek" && englishAll[0].innerHTML === "morning") {playerScore++}
+    else if (polish.innerHTML === "popludnie" && englishAll[0].innerHTML === "afternoon") {playerScore++}
+    else if (polish.innerHTML === "wieczor" && englishAll[0].innerHTML === "evening") {playerScore++} 
+     else {computerScore++};
 };
 
 function optionTwo() {
     if (polish.innerHTML === "piwo" && englishAll[1].innerHTML === "beer") {playerScore++}
-    if (polish.innerHTML === "czemu" && englishAll[1].innerHTML === "why") {playerScore++}
-    if (polish.innerHTML === "zamiast" && englishAll[1].innerHTML === "instead") {playerScore++}
-    if (polish.innerHTML === "przepraszam" && englishAll[1].innerHTML === "excuse me") {playerScore++}
-    if (polish.innerHTML === "dziekuje" && englishAll[1].innerHTML === "thank you") {playerScore++}
-    if (polish.innerHTML === "dobry" && englishAll[1].innerHTML === "good") {playerScore++}
-    if (polish.innerHTML === "niedobry" && englishAll[1].innerHTML === "bad") {playerScore++}
-    if (polish.innerHTML === "ranek" && englishAll[1].innerHTML === "morning") {playerScore++}
-    if (polish.innerHTML === "popludnie" && englishAll[1].innerHTML === "afternoon") {playerScore++}
-    if (polish.innerHTML === "wieczor" && englishAll[1].innerHTML === "evening") {playerScore++} 
+    else if (polish.innerHTML === "czemu" && englishAll[1].innerHTML === "why") {playerScore++}
+    else if (polish.innerHTML === "zamiast" && englishAll[1].innerHTML === "instead") {playerScore++}
+    else if (polish.innerHTML === "przepraszam" && englishAll[1].innerHTML === "excuse me") {playerScore++}
+    else if (polish.innerHTML === "dziekuje" && englishAll[1].innerHTML === "thank you") {playerScore++}
+    else if (polish.innerHTML === "dobry" && englishAll[1].innerHTML === "good") {playerScore++}
+    else if (polish.innerHTML === "niedobry" && englishAll[1].innerHTML === "bad") {playerScore++}
+    else if (polish.innerHTML === "ranek" && englishAll[1].innerHTML === "morning") {playerScore++}
+    else if (polish.innerHTML === "popludnie" && englishAll[1].innerHTML === "afternoon") {playerScore++}
+    else if (polish.innerHTML === "wieczor" && englishAll[1].innerHTML === "evening") {playerScore++} 
     else {computerScore++};
 };
 
 function optionThree() {
     if (polish.innerHTML === "piwo" && englishAll[2].innerHTML === "beer") {playerScore++}
-    if (polish.innerHTML === "czemu" && englishAll[2].innerHTML === "why") {playerScore++}
-    if (polish.innerHTML ==="zamiast" && englishAll[2].innerHTML === "instead") {playerScore++}
-    if (polish.innerHTML === "przepraszam" && englishAll[2].innerHTML === "excuse me") {playerScore++}
-    if (polish.innerHTML === "dziekuje" && englishAll[2].innerHTML === "thank you") {playerScore++}
-    if (polish.innerHTML === "dobry" && englishAll[2].innerHTML === "good") {playerScore++}
-    if (polish.innerHTML === "niedobry" && englishAll[2].innerHTML === "bad") {playerScore++}
-    if (polish.innerHTML === "ranek" && englishAll[2].innerHTML === "morning") {playerScore++}
-    if (polish.innerHTML === "popludnie" && englishAll[2].innerHTML === "afternoon") {playerScore++}
-    if (polish.innerHTML === "wieczor" && englishAll[2].innerHTML === "evening") {playerScore++} 
-    else {computerScore++};
+    else if (polish.innerHTML === "czemu" && englishAll[2].innerHTML === "why") {playerScore++}
+    else if (polish.innerHTML ==="zamiast" && englishAll[2].innerHTML === "instead") {playerScore++}
+    else if (polish.innerHTML === "przepraszam" && englishAll[2].innerHTML === "excuse me") {playerScore++}
+    else if (polish.innerHTML === "dziekuje" && englishAll[2].innerHTML === "thank you") {playerScore++}
+    else if (polish.innerHTML === "dobry" && englishAll[2].innerHTML === "good") {playerScore++}
+    else if (polish.innerHTML === "niedobry" && englishAll[2].innerHTML === "bad") {playerScore++}
+    else if (polish.innerHTML === "ranek" && englishAll[2].innerHTML === "morning") {playerScore++}
+    else if (polish.innerHTML === "popludnie" && englishAll[2].innerHTML === "afternoon") {playerScore++}
+    else if (polish.innerHTML === "wieczor" && englishAll[2].innerHTML === "evening") {playerScore++} 
+   else {computerScore++};
 };
 
 function optionFour() {
     if (polish.innerHTML === "piwo" && englishAll[3].innerHTML === "beer") {playerScore++}
-    if (polish.innerHTML === "czemu" && englishAll[3].innerHTML === "why") {playerScore++}
-    if (polish.innerHTML === "zamiast" && englishAll[3].innerHTML === "instead") {playerScore++}
-    if (polish.innerHTML === "przepraszam" && englishAll[3].innerHTML === "excuse me") {playerScore++}
-    if (polish.innerHTML === "dziekuje" && englishAll[3].innerHTML === "thank you") {playerScore++}
-    if (polish.innerHTML === "dobry" && englishAll[3].innerHTML === "good") {playerScore++}
-    if (polish.innerHTML === "niedobry" && englishAll[3].innerHTML === "bad") {playerScore++}
-    if (polish.innerHTML === "ranek" && englishAll[3].innerHTML === "morning") {playerScore++}
-    if (polish.innerHTML === "popludnie" && englishAll[3].innerHTML === "afternoon") {playerScore++}
-    if (polish.innerHTML === "wieczor" && englishAll[3].innerHTML === "evening") {playerScore++} 
+    else if (polish.innerHTML === "czemu" && englishAll[3].innerHTML === "why") {playerScore++}
+    else if (polish.innerHTML === "zamiast" && englishAll[3].innerHTML === "instead") {playerScore++}
+    else if (polish.innerHTML === "przepraszam" && englishAll[3].innerHTML === "excuse me") {playerScore++}
+    else if (polish.innerHTML === "dziekuje" && englishAll[3].innerHTML === "thank you") {playerScore++}
+    else if (polish.innerHTML === "dobry" && englishAll[3].innerHTML === "good") {playerScore++}
+    else if (polish.innerHTML === "niedobry" && englishAll[3].innerHTML === "bad") {playerScore++}
+    else if (polish.innerHTML === "ranek" && englishAll[3].innerHTML === "morning") {playerScore++}
+    else if (polish.innerHTML === "popludnie" && englishAll[3].innerHTML === "afternoon") {playerScore++}
+    else if (polish.innerHTML === "wieczor" && englishAll[3].innerHTML === "evening") {playerScore++} 
     else {computerScore++};
 };
 
