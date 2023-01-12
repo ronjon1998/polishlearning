@@ -142,17 +142,15 @@ window.onload = function() {
 // this updates the inner html of the players score with the current score
 
 function updatingPlayerScore() {
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].innerHTML = playerScore;
- }};
+    playerLiveScore.innerHTML = playerScore
+ };
  
  // this updates the inner html of the computers score with the current score
 
 function updatingComputerScore() {
-            for (var i = 0; i < buttons.length; i++) {
-            buttons[i].innerHTML = computerScore;
+            computerLiveScore.innerHTML = computerScore;
      };
- };
+ 
 
 
 
