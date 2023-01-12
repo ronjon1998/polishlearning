@@ -22,16 +22,12 @@
 // then make it so that when user wins 10-0 there is a new array 
 
 const polish = document.getElementById('polishBox');
-const englishAll = document.getElementsByClassName('buttons');
+const englishAll = document.getElementsByClassName('options');
 let polArr = ["piwo", "czemu", "zamiast", "przepraszam", "dziekuje", "dobry", "niedobry", "ranek", "popludnie", "wieczor"];
 let engArr = ["beer", "why", "instead", "excuse me", "thank you", "good", "bad", "morning", "afternoon", "evening"];
 
 function generateRandomInteger(max) {
 return Math.floor(Math.random() * max) + 1;
-};
-
-function polishWords() {
-    polish.innerHTML = polArr[generateRandomInteger(9)]
 };
 
 function beginGame() {
@@ -112,44 +108,54 @@ function wieczor() {
 
 // need to figure out how to update the score system and then upload to github and add abai!
 
-let playerLiveScore = document.getElementById('playerScore');
-let computerLiveScore = document.getElementById('computerScore');
-let playerScore = 0;
-let computerScore = 0;
-const buttons = document.querySelectorAll('button');
+let playerLiveScore = document.getElementById('playerScore');   // this variable selects the player score div
+let computerLiveScore = document.getElementById('computerScore');   // this variable selects the computer score div
+let playerScore = 0;    // this sets the player score as 0
+let computerScore = 0;    // this sets the computer score as 0
+const buttons = document.getElementsByClassName('buttons');    
+// const buttons = document.querySelectorAll('button') this returns an node list of buttons but isnt working
 
+// this function below sets the inner html of the divs as the inherit player and computer score.
 
 window.onload = function() {
     playerLiveScore.innerHTML = playerScore;
     computerLiveScore.innerHTML = computerScore;
   };
 
-  buttons.forEach(button =>{
-    button.addEventListener('click', function(){
-        updatingPlayerScore()
-    })
-});
+// this should update player score but isnt working... i think the buttons const isnt working
 
-buttons.forEach(button =>{
-    button.addEventListener('click', function(){
-        updatingComputerScore()
-    })
-});
 
+ // buttons.forEach(button =>{
+  //  button.addEventListener('click', function(){
+    //    updatingPlayerScore()
+   // })
+// });
+
+// this should update computer score but isnt working... i think the buttons const isnt working
+
+// buttons.forEach(button =>{
+    // button.addEventListener('click', function(){
+     //   updatingComputerScore()
+   // })
+// });
+
+// this updates the inner html of the players score with the current score
 
 function updatingPlayerScore() {
-        playerLiveScore.innerText = "Your Score: " + playerScore;
- };
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].innerHTML = playerScore;
+ }};
  
+ // this updates the inner html of the computers score with the current score
+
 function updatingComputerScore() {
-        computerLiveScore.innerText = "Your Opponents Score: " + computerScore
+            for (var i = 0; i < buttons.length; i++) {
+            buttons[i].innerHTML = computerScore;
+     };
  };
 
-buttons.onclick = console.log(playerScore++);
-buttons.onclick = console.log(computerScore++);
-buttons.onclick = updatingPlayerScore;
-buttons.onclick = updatingComputerScore;
-    
+
+
 
 function optionOne() {
     if (polish.innerHTML === "piwo" && englishAll[0].innerHTML === "beer") {playerScore++}
