@@ -50,7 +50,7 @@ function generateRandomInteger(min, max) {
         // this code below - issue is that the filtered words eventually mean that only a handful of words in the fitlered array remain sometimes correct answer twice
         const englishWordsNotAnswer = englishWords.filter(word => word !== answer.innerHTML);
         const buttonsArrArray = [...buttonsArr]; 
-        const buttonsArrNotInUse = buttonsArrArray.filter(box => box.innerHTML.length < 1);
+        const buttonsArrNotInUse = buttonsArrArray.filter(button => button.innerHTML.length < 1);
         for (var i = 0; i < buttonsArrNotInUse.length; i++) {
             const differentEnglish = englishWordsNotAnswer.filter(word => word !== buttonsArrNotInUse[i-1]);
             buttonsArrNotInUse[i].innerHTML = differentEnglish[generateRandomInteger(0,englishWordsNotAnswer.length-1)]
@@ -67,8 +67,9 @@ function scoringSystem(i) {
         if (playerScore === 10) {
             playerLiveScore.innerHTML = "10 points!! Player has won!!";
             computerLiveScore.innerHTML = "computer has lost";
+            for (var i = 0; i<buttonsArr.length; i++) {
             buttonsArr[i].disabled = true;
-        }
+        }};
         if (computerScore === 10) {
             computerLiveScore.innerHTML = "10 points!! Computer has won!!";
             playerLiveScore.innerHTML = "player has lost";
