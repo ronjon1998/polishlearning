@@ -1,6 +1,5 @@
 const polishBoxes = document.getElementById('polishBox');
-const englishBoxes = document.getElementsByClassName('options');
-const buttonsArr = Array.from(document.querySelectorAll(".buttons")); 
+const buttonsArr = Array.from(document.querySelectorAll(".buttons"));
 let computerScore = 0;
 let playerScore = 0;
 let playerLiveScore = document.getElementById('playerScore');   
@@ -38,34 +37,25 @@ function generateRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
   };
 
-// This below function randomises (1) a polish word, (2) a correct english word, (3) and three other options, (4) none of which are the same
-
     function roundWordRandomiser() {
-        // maybe have something here that depopulates the boxes to nothing before starting again
+        for (var i = 0; i < buttonsArr.length; i++) {
+            buttonsArr[i].innerHTML= ""
+        };
         let polishQuestionEnglishAnswerIndex = generateRandomInteger(0, polishWords.length-1);
-        let whichEnglishBox = generateRandomInteger(0, englishBoxes.length-1);
+        let whichEnglishBox = generateRandomInteger(0, buttonsArr.length-1);
         const question = polishWords[polishQuestionEnglishAnswerIndex];
         const answer = englishWords[polishQuestionEnglishAnswerIndex]
-        polishBoxes.innerHTML = question; // 1
-        englishBoxes[whichEnglishBox].innerHTML = answer; // 2
-        // this code below puts english words that arent answer... needs to be all different though!
+        polishBoxes.innerHTML = question;
+        buttonsArr[whichEnglishBox].innerHTML = answer;
+        // this code below - issue is that the filtered words eventually mean that only a handful of words in the fitlered array remain sometimes correct answer twice
         const englishWordsNotAnswer = englishWords.filter(word => word !== answer.innerHTML);
-        const englishBoxesArray = [...englishBoxes]; 
-        const englishBoxesNotInUse = englishBoxesArray.filter(box => box.innerHTML.length < 1);
-        for (var i = 0; i < englishBoxesNotInUse.length; i++) {
-            englishBoxesNotInUse[i].innerHTML = englishWordsNotAnswer[generateRandomInteger(0,englishWordsNotAnswer.length-1)]
+        const buttonsArrArray = [...buttonsArr]; 
+        const buttonsArrNotInUse = buttonsArrArray.filter(box => box.innerHTML.length < 1);
+        for (var i = 0; i < buttonsArrNotInUse.length; i++) {
+            const differentEnglish = englishWordsNotAnswer.filter(word => word !== buttonsArrNotInUse[i-1]);
+            buttonsArrNotInUse[i].innerHTML = differentEnglish[generateRandomInteger(0,englishWordsNotAnswer.length-1)]
         };
-        assigningButtonValue();
     };
-
-
-// the scoring system
-
-function assigningButtonValue() {
-    for (var i = 0; i<buttonsArr.length; i++) {
-        buttonsArr[i].innerHTML = englishBoxes[i].innerHTML;
-    }
-};
 
 function scoringSystem(i) {
         let userChoice = buttonsArr[i].innerHTML;
@@ -74,23 +64,39 @@ function scoringSystem(i) {
         else {computerScore++};
         playerLiveScore.innerHTML = playerScore;
         computerLiveScore.innerHTML = computerScore;
+        if (playerScore === 10) {
+            playerLiveScore.innerHTML = "10 points!! Player has won!!";
+            computerLiveScore.innerHTML = "computer has lost";
+            buttonsArr[i].disabled = true;
+        }
+        if (computerScore === 10) {
+            computerLiveScore.innerHTML = "10 points!! Computer has won!!";
+            playerLiveScore.innerHTML = "player has lost";
+            for (var i = 0; i<buttonsArr.length; i++) {
+                buttonsArr[i].disabled = true;
+            };
+        }
 };
 
 // this line below is attempting to play a new round after every time an answer is clicked - but it is immediately called and no event triggers?
 
 // buttonsArr.forEach((button) => button.addEventListener("click", roundWordRandomiser()));
 
-// 1 - make the buttons the only thing with the english in - remove the non button text
-
 // 2 - try and complete the first function so it works
-
-// 3 - make it so that once the game hits ten someone wins 
 
 // 4 - make it so that after every round the used polish word is removed from the available options so it is never used again
 
-// 5 - make it so that once you win 10-0, a new harder round with more words takes the place of level one
+// 5 - make it so that once you win 10-0 a new buttons is enabled that once clicked, a new harder round with more words takes the place of the current one
+
+const englishAndPolishWordsSecondRound = {
+    Cheers : "Na zdrowie",
+    Please : "Prosze",
+    IDontUnderstand : "Nie rozumiem",
+    WhatsYourName : "Jak masz na imię",
+    ILoveYou : "Kocham cię",
 
 
+}
 
 
 
@@ -107,12 +113,12 @@ function scoringSystem(i) {
         //     questionAnswer
         //   );
         //   console.log("right word", correctEnglishWord);
-        //   englishBoxes[randomEnglishWordIndex].innerHTML = correctEnglishWord;
+        //   buttonsArr[randomEnglishWordIndex].innerHTML = correctEnglishWord;
         //   const incorrectEnglishWords = englishWords.filter(
         //     (word) => word !== correctEnglishWord
         //   );
       
-        //   const englishBoxArray = Array.from(englishBoxes);
+        //   const englishBoxArray = Array.from(buttonsArr);
         //   englishBoxArray.forEach((englishBox) => {
         //     const alreadyUsedWords = englishBoxArray.map((box) => {
         //       console.log("box", box, box.innerHTML);
@@ -158,8 +164,8 @@ function scoringSystem(i) {
       /* 
       let answer = getKeyByValue(englishAndPolishWords, polishWords[a]);
       let j =0;
-      do {englishBoxes[j].innerHTML = englishWords[generateRandomInteger(9)], j++}
-      while (englishBoxes[j].innerHTML !== answer)
+      do {buttonsArr[j].innerHTML = englishWords[generateRandomInteger(9)], j++}
+      while (buttonsArr[j].innerHTML !== answer)
 };
 // be explicit and then refactor
 
