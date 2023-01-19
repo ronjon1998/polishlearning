@@ -1,83 +1,98 @@
-const polishBoxes = document.getElementById('polishBox');
+const polishBoxes = document.getElementById("polishBox");
 const buttonsArr = Array.from(document.querySelectorAll(".buttons"));
 let computerScore = 0;
 let playerScore = 0;
-let playerLiveScore = document.getElementById('playerScore');   
-let computerLiveScore = document.getElementById('computerScore');
+let playerLiveScore = document.getElementById("playerScore");
+let computerLiveScore = document.getElementById("computerScore");
 const englishAndPolishWords = {
-    beer : "piwo",
-    why : "czemu",
-    instead : "zamiast",
-    excuseMe : "przepraszam",
-    thankYou : "dziekuje",
-    good : "dobry", 
-    bad : "niedobry",
-    morning : "ranek",
-    afternoon : "popludnie",
-    evening : "wieczor",
+  beer: "piwo",
+  why: "czemu",
+  instead: "zamiast",
+  excuseMe: "przepraszam",
+  thankYou: "dziekuje",
+  good: "dobry",
+  bad: "niedobry",
+  morning: "ranek",
+  afternoon: "popludnie",
+  evening: "wieczor",
 };
 
 let englishWords = Object.keys(englishAndPolishWords);
 let polishWords = Object.values(englishAndPolishWords);
 
-window.onload = function() {
-    playerLiveScore.innerHTML = playerScore;
-    computerLiveScore.innerHTML = computerScore;
-  };
+window.onload = function () {
+  playerLiveScore.innerHTML = playerScore;
+  computerLiveScore.innerHTML = computerScore;
+};
 
 function getKeyByValue(object, value) {
-    return Object.keys(object).find(key => object[key] === value);
-};
+  return Object.keys(object).find((key) => object[key] === value);
+}
 
 function getValueByKey(object, key) {
-    return object[key];
-};
+  return object[key];
+}
 
 function generateRandomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  };
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
-    function roundWordRandomiser() {
-        for (var i = 0; i < buttonsArr.length; i++) {
-            buttonsArr[i].innerHTML= ""
-        };
-        let polishQuestionEnglishAnswerIndex = generateRandomInteger(0, polishWords.length-1);
-        let whichEnglishBox = generateRandomInteger(0, buttonsArr.length-1);
-        const question = polishWords[polishQuestionEnglishAnswerIndex];
-        const answer = englishWords[polishQuestionEnglishAnswerIndex]
-        polishBoxes.innerHTML = question;
-        buttonsArr[whichEnglishBox].innerHTML = answer;
-        // this code below - issue is that the filtered words eventually mean that only a handful of words in the fitlered array remain sometimes correct answer twice
-        const englishWordsNotAnswer = englishWords.filter(word => word !== answer.innerHTML);
-        const buttonsArrArray = [...buttonsArr]; 
-        const buttonsArrNotInUse = buttonsArrArray.filter(button => button.innerHTML.length < 1);
-        for (var i = 0; i < buttonsArrNotInUse.length; i++) {
-            const differentEnglish = englishWordsNotAnswer.filter(word => word !== buttonsArrNotInUse[i-1]);
-            buttonsArrNotInUse[i].innerHTML = differentEnglish[generateRandomInteger(0,englishWordsNotAnswer.length-1)]
-        };
-    };
+function roundWordRandomiser() {
+  for (var i = 0; i < buttonsArr.length; i++) {
+    buttonsArr[i].innerHTML = "";
+    buttonsArr[i].value = "";
+  }
+  let polishQuestionEnglishAnswerIndex = generateRandomInteger(
+    0,
+    polishWords.length - 1
+  );
+  let whichEnglishBox = generateRandomInteger(0, buttonsArr.length - 1);
+  const question = polishWords[polishQuestionEnglishAnswerIndex];
+  const answer = englishWords[polishQuestionEnglishAnswerIndex];
+  polishBoxes.innerHTML = question;
+  buttonsArr[whichEnglishBox].innerHTML = answer;
+  buttonsArr[whichEnglishBox].value = answer;
+  // this code below - issue is that the filtered words eventually mean that only a handful of words in the fitlered array remain sometimes correct answer twice
+
+  const englishWordsNotAnswer = englishWords.filter((word) => word !== answer);
+  // shuffle array then pick first 3 elements
+  const shuffledWords = englishWordsNotAnswer.sort(() => 0.5 - Math.random());
+  const otherWords = shuffledWords.slice(0, 3);
+  const buttonsWithoutValue = buttonsArr
+    .map((button) => !button.value && button)
+    .filter(Boolean);
+
+  buttonsWithoutValue.forEach((btn, idx) => {
+    btn.innerHTML = otherWords[idx];
+    btn.value = otherWords[idx];
+  });
+}
 
 function scoringSystem(i) {
-        let userChoice = buttonsArr[i].innerHTML;
-        let userAnswer = getValueByKey(englishAndPolishWords, userChoice);
-        if (polishBoxes.innerHTML === userAnswer) {playerScore++}
-        else {computerScore++};
-        playerLiveScore.innerHTML = playerScore;
-        computerLiveScore.innerHTML = computerScore;
-        if (playerScore === 10) {
-            playerLiveScore.innerHTML = "10 points!! Player has won!!";
-            computerLiveScore.innerHTML = "computer has lost";
-            for (var i = 0; i<buttonsArr.length; i++) {
-            buttonsArr[i].disabled = true;
-        }};
-        if (computerScore === 10) {
-            computerLiveScore.innerHTML = "10 points!! Computer has won!!";
-            playerLiveScore.innerHTML = "player has lost";
-            for (var i = 0; i<buttonsArr.length; i++) {
-                buttonsArr[i].disabled = true;
-            };
-        }
-};
+  let userChoice = buttonsArr[i].innerHTML;
+  let userAnswer = getValueByKey(englishAndPolishWords, userChoice);
+  if (polishBoxes.innerHTML === userAnswer) {
+    playerScore++;
+  } else {
+    computerScore++;
+  }
+  playerLiveScore.innerHTML = playerScore;
+  computerLiveScore.innerHTML = computerScore;
+  if (playerScore === 10) {
+    playerLiveScore.innerHTML = "10 points!! Player has won!!";
+    computerLiveScore.innerHTML = "computer has lost";
+    for (var i = 0; i < buttonsArr.length; i++) {
+      buttonsArr[i].disabled = true;
+    }
+  }
+  if (computerScore === 10) {
+    computerLiveScore.innerHTML = "10 points!! Computer has won!!";
+    playerLiveScore.innerHTML = "player has lost";
+    for (var i = 0; i < buttonsArr.length; i++) {
+      buttonsArr[i].disabled = true;
+    }
+  }
+}
 
 // this line below is attempting to play a new round after every time an answer is clicked - but it is immediately called and no event triggers?
 
@@ -90,18 +105,12 @@ function scoringSystem(i) {
 // 5 - make it so that once you win 10-0 a new buttons is enabled that once clicked, a new harder round with more words takes the place of the current one
 
 const englishAndPolishWordsSecondRound = {
-    Cheers : "Na zdrowie",
-    Please : "Prosze",
-    IDontUnderstand : "Nie rozumiem",
-    WhatsYourName : "Jak masz na imię",
-    ILoveYou : "Kocham cię",
-
-
-}
-
-
-
-
+  Cheers: "Na zdrowie",
+  Please: "Prosze",
+  IDontUnderstand: "Nie rozumiem",
+  WhatsYourName: "Jak masz na imię",
+  ILoveYou: "Kocham cię",
+};
 
 /*
 
